@@ -1,11 +1,10 @@
 import Head from "next/head";
 
 export default function Seo({ title }) {
+  const titleString = `${title} | Next Movies`;
   return (
-    <>
-      <Head>
-        <title>{title} | Next Movies</title>
-      </Head>
-    </>
+    <Head>
+      <title>{titleString}</title>
+    </Head>
   );
 }

@@ -4,24 +4,19 @@ import { useEffect, useState } from "react";
 const API_KEY = "08192788a8e5af154550148c8022e396";
 
 export default function Home() {
-  const [moives, setMovies] = useState([]);
+  const [movies, setMovies] = useState([]);
   useEffect(() => {
     (async () => {
       // response.results => 구조분해할당으로 {results} 사용
-      const { results } = await (
-        await fetch(
-          `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
-        )
-      ).json();
+      const { results } = await (await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)).json();
       setMovies(results);
     })();
-  }),
-    [];
+  }, []);
+
   return (
     <div className="container">
-      <Seo title="Home" />
-      {!moives && <h4>Loading...</h4>}
-      {moives?.map(movie => (
+      {!movies && <h4>Loading...</h4>}
+      {movies?.map((movie) => (
         <div className="movie" key={movie.id}>
           <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
           <h4>{movie.original_title}</h4>
